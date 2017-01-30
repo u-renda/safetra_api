@@ -16,7 +16,7 @@ class Admin extends REST_Controller {
 		$this->benchmark->mark('code_start');
 		$validation = 'ok';
 		
-		$name = filter(trim(strtolower($this->post('name'))));
+		$name = filter(trim($this->post('name')));
 		$username = filter(trim(strtolower($this->post('username'))));
 		$password = filter(trim($this->post('password')));
 		$email = filter(trim(strtolower($this->post('email'))));
@@ -399,7 +399,7 @@ class Admin extends REST_Controller {
 		$validation = 'ok';
 		
 		$id_admin = filter($this->post('id_admin'));
-		$name = filter(trim(strtolower($this->post('name'))));
+		$name = filter(trim($this->post('name')));
 		$username = filter(trim(strtolower($this->post('username'))));
 		$password = filter(trim($this->post('password')));
 		$email = filter(trim(strtolower($this->post('email'))));
