@@ -216,9 +216,10 @@ class Admin extends REST_Controller {
 		$validation = 'ok';
 		
 		$id_admin = filter($this->get('id_admin'));
+		$username = filter(trim($this->get('username')));
 		
 		$data = array();
-		if ($id_admin == FALSE)
+		if ($id_admin == FALSE && $username == FALSE)
 		{
 			$data['id_admin'] = 'required';
 			$validation = 'error';
@@ -231,6 +232,10 @@ class Admin extends REST_Controller {
 			if ($id_admin != '')
 			{
 				$param['id_admin'] = $id_admin;
+			}
+			else
+			{
+				$param['username'] = $username;
 			}
 			
 			$query = $this->the_model->info($param);

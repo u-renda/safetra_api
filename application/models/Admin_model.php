@@ -44,7 +44,7 @@ class Admin_model extends CI_Model {
             $where += array('email' => $param['email']);
         }
         
-        $this->db->select('id_admin, name, username, email, photo, status, role, job_title,
+        $this->db->select('id_admin, name, username, password, email, photo, status, role, job_title,
 						  created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
