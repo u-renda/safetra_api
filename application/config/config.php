@@ -535,5 +535,6 @@ $config['default_member_status'] = array('1', '2', '3');
 $config['default_preferences_order'] = array('created_date', 'name');
 $config['default_program_order'] = array('created_date', 'name', 'percentage');
 $config['default_program_sub_order'] = array('created_date', 'name');
+$config['default_slider_order'] = array('created_date');
 $config['default_testimony_order'] = array('created_date', 'name');
 $config['default_sort'] = array('asc', 'desc');
