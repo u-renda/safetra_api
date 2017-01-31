@@ -142,9 +142,10 @@ class Article extends REST_Controller {
 		$validation = 'ok';
 		
 		$id_article = filter($this->get('id_article'));
+		$slug = filter(trim($this->get('slug')));
 		
 		$data = array();
-		if ($id_article == FALSE)
+		if ($id_article == FALSE && $slug == FALSE)
 		{
 			$data['id_article'] = 'required';
 			$validation = 'error';
@@ -157,6 +158,10 @@ class Article extends REST_Controller {
 			if ($id_article != '')
 			{
 				$param['id_article'] = $id_article;
+			}
+			else
+			{
+				$param['slug'] = $slug;
 			}
 			
 			$query = $this->the_model->info($param);
