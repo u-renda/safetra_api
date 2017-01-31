@@ -54,9 +54,10 @@ class Media_album extends REST_Controller {
 			$param['updated_date'] = date('Y-m-d H:i:s');
 			$query = $this->the_model->create($param);
 			
-			if ($query > 0)
+			if ($query != 0 || $query != '')
 			{
 				$data['create'] = 'success';
+				$data['id_media_album'] = $query;
 				$validation = 'ok';
 				$code = 200;
 			}
