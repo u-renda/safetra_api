@@ -17,7 +17,7 @@ class Article extends REST_Controller {
 		$validation = 'ok';
 		
 		$title = filter(trim($this->post('title')));
-		$content = filter(trim($this->post('content')));
+		$content = $this->post('content');
 		$media = filter($this->post('media'));
 		$tags = filter(trim($this->post('tags')));
 		
@@ -299,7 +299,7 @@ class Article extends REST_Controller {
 		
 		$id_article = filter($this->post('id_article'));
 		$title = filter(trim($this->post('title')));
-		$content = filter(trim($this->post('content')));
+		$content = $this->post('content');
 		$media = filter($this->post('media'));
 		$tags = filter(trim($this->post('tags')));
 		
