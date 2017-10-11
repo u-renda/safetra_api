@@ -17,7 +17,7 @@ class Preferences extends REST_Controller {
 		$validation = 'ok';
 		
 		$name = filter(trim($this->post('name')));
-		$content = filter(trim($this->post('content')));
+		$content = trim($this->post('content'));
 
 		$data = array();
 		if ($name == FALSE)
@@ -297,7 +297,7 @@ class Preferences extends REST_Controller {
 		
 		$id_preferences = filter($this->post('id_preferences'));
 		$name = filter(trim($this->post('name')));
-		$content = filter(trim($this->post('content')));
+		$content = trim($this->post('content'));
 
 		$data = array();
 		if ($id_preferences == FALSE)
