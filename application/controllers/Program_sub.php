@@ -208,18 +208,17 @@ class Program_sub extends REST_Controller {
 					'id_program_sub' => $row->id_program_sub,
 					'name' => $row->name,
 					'slug' => $row->slug,
-					'program_objective' => $row->program_objective,
+					'introduction' => $row->introduction,
 					'training_purpose' => $row->training_purpose,
-					'requirements_of_participant' => $row->requirements_of_participant,
-					'training_material' => $row->training_material,
+					'target_participant' => $row->target_participant,
+					'course_content' => $row->course_content,
 					'others' => $row->others,
 					'created_date' => $row->created_date,
 					'updated_date' => $row->updated_date,
 					'program' => array(
 						'id_program' => $row->id_program,
 						'name' => $row->program_name,
-						'slug' => $row->program_slug,
-						'percentage' => intval($row->percentage)
+						'slug' => $row->program_slug
 					)
 				);
 				
@@ -319,10 +318,10 @@ class Program_sub extends REST_Controller {
 					'id_program' => $row->id_program,
 					'name' => $row->name,
 					'slug' => $row->slug,
-					'program_objective' => $row->program_objective,
+					'introduction' => $row->introduction,
 					'training_purpose' => $row->training_purpose,
-					'requirements_of_participant' => $row->requirements_of_participant,
-					'training_material' => $row->training_material,
+					'target_participant' => $row->target_participant,
+					'course_content' => $row->course_content,
 					'others' => $row->others,
 					'created_date' => $row->created_date,
 					'updated_date' => $row->updated_date

@@ -17,11 +17,10 @@ class Program extends REST_Controller {
 		$validation = 'ok';
 		
 		$name = filter(trim($this->post('name')));
-		$percentage = filter(trim($this->post('percentage')));
-		$program_objective = $this->post('program_objective');
+		$introduction = $this->post('introduction');
 		$training_purpose = $this->post('training_purpose');
-		$requirements_of_participant = $this->post('requirements_of_participant');
-		$training_material = $this->post('training_material');
+		$target_participant = $this->post('target_participant');
+		$course_content = $this->post('course_content');
 		$others = filter(trim($this->post('others')));
 		
 		$data = array();
@@ -32,9 +31,30 @@ class Program extends REST_Controller {
 			$code = 400;
 		}
 		
-		if ($percentage == FALSE)
+		if ($introduction == FALSE)
 		{
-			$data['percentage'] = 'required';
+			$data['introduction'] = 'required';
+			$validation = 'error';
+			$code = 400;
+		}
+		
+		if ($training_purpose == FALSE)
+		{
+			$data['training_purpose'] = 'required';
+			$validation = 'error';
+			$code = 400;
+		}
+		
+		if ($target_participant == FALSE)
+		{
+			$data['target_participant'] = 'required';
+			$validation = 'error';
+			$code = 400;
+		}
+		
+		if ($course_content == FALSE)
+		{
+			$data['course_content'] = 'required';
 			$validation = 'error';
 			$code = 400;
 		}
@@ -63,12 +83,11 @@ class Program extends REST_Controller {
 			$param = array();
 			$param['name'] = $name;
 			$param['slug'] = $slug;
-			$param['program_objective'] = $program_objective;
+			$param['introduction'] = $introduction;
 			$param['training_purpose'] = $training_purpose;
-			$param['requirements_of_participant'] = $requirements_of_participant;
-			$param['training_material'] = $training_material;
+			$param['target_participant'] = $target_participant;
+			$param['course_content'] = $course_content;
 			$param['others'] = $others;
-			$param['percentage'] = $percentage;
 			$param['created_date'] = date('Y-m-d H:i:s');
 			$param['updated_date'] = date('Y-m-d H:i:s');
 			$query = $this->the_model->create($param);
@@ -187,11 +206,10 @@ class Program extends REST_Controller {
 					'id_program' => $row->id_program,
 					'name' => $row->name,
 					'slug' => $row->slug,
-					'percentage' => intval($row->percentage),
-					'program_objective' => $row->program_objective,
+					'introduction' => $row->introduction,
 					'training_purpose' => $row->training_purpose,
-					'requirements_of_participant' => $row->requirements_of_participant,
-					'training_material' => $row->training_material,
+					'target_participant' => $row->target_participant,
+					'course_content' => $row->course_content,
 					'others' => $row->others,
 					'created_date' => $row->created_date,
 					'updated_date' => $row->updated_date
@@ -286,11 +304,10 @@ class Program extends REST_Controller {
 					'id_program' => $row->id_program,
 					'name' => $row->name,
 					'slug' => $row->slug,
-					'percentage' => intval($row->percentage),
-					'program_objective' => $row->program_objective,
+					'introduction' => $row->introduction,
 					'training_purpose' => $row->training_purpose,
-					'requirements_of_participant' => $row->requirements_of_participant,
-					'training_material' => $row->training_material,
+					'target_participant' => $row->target_participant,
+					'course_content' => $row->course_content,
 					'others' => $row->others,
 					'created_date' => $row->created_date,
 					'updated_date' => $row->updated_date
@@ -318,11 +335,10 @@ class Program extends REST_Controller {
 		
 		$id_program = filter($this->post('id_program'));
 		$name = filter(trim($this->post('name')));
-		$percentage = filter(trim($this->post('percentage')));
-		$program_objective = $this->post('program_objective');
+		$introduction = $this->post('introduction');
 		$training_purpose = $this->post('training_purpose');
-		$requirements_of_participant = $this->post('requirements_of_participant');
-		$training_material = $this->post('training_material');
+		$target_participant = $this->post('target_participant');
+		$course_content = $this->post('course_content');
 		$others = filter(trim($this->post('others')));
 		
 		$data = array();
@@ -345,14 +361,9 @@ class Program extends REST_Controller {
 					$param['name'] = $name;
 				}
 				
-				if ($percentage == TRUE)
+				if ($introduction == TRUE)
 				{
-					$param['percentage'] = $percentage;
-				}
-				
-				if ($program_objective == TRUE)
-				{
-					$param['program_objective'] = $program_objective;
+					$param['introduction'] = $introduction;
 				}
 				
 				if ($training_purpose == TRUE)
@@ -360,14 +371,14 @@ class Program extends REST_Controller {
 					$param['training_purpose'] = $training_purpose;
 				}
 				
-				if ($requirements_of_participant == TRUE)
+				if ($target_participant == TRUE)
 				{
-					$param['requirements_of_participant'] = $requirements_of_participant;
+					$param['target_participant'] = $target_participant;
 				}
 				
-				if ($training_material == TRUE)
+				if ($course_content == TRUE)
 				{
-					$param['training_material'] = $training_material;
+					$param['course_content'] = $course_content;
 				}
 				
 				if ($others == TRUE)

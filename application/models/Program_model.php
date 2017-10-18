@@ -40,9 +40,8 @@ class Program_model extends CI_Model {
             $where += array('slug' => $param['slug']);
         }
         
-        $this->db->select('id_program, name, slug, percentage, program_objective, training_purpose,
-						  requirements_of_participant, training_material, others, created_date,
-						  updated_date');
+        $this->db->select('id_program, name, slug, introduction, training_purpose, target_participant,
+						  course_content, others, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $query = $this->db->get();
@@ -53,9 +52,8 @@ class Program_model extends CI_Model {
     {
         $where = array();
 
-        $this->db->select('id_program, name, slug, percentage, program_objective, training_purpose,
-						  requirements_of_participant, training_material, others, created_date,
-						  updated_date');
+        $this->db->select('id_program, name, slug, introduction, training_purpose, target_participant,
+						  course_content, others, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);

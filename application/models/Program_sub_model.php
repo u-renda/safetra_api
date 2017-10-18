@@ -37,12 +37,12 @@ class Program_sub_model extends CI_Model {
         }
         
         $this->db->select('id_program_sub, '.$this->table.'.id_program, '.$this->table.'.name,
-						  '.$this->table.'.slug, '.$this->table.'.program_objective,
+						  '.$this->table.'.slug, '.$this->table.'.introduction,
 						  '.$this->table.'.training_purpose,
-						  '.$this->table.'.requirements_of_participant,
-						  '.$this->table.'.training_material, '.$this->table.'.others,
+						  '.$this->table.'.target_participant,
+						  '.$this->table.'.course_content, '.$this->table.'.others,
 						  '.$this->table.'.created_date, '.$this->table.'.updated_date,
-						  program.name AS program_name, program.slug AS program_slug, percentage');
+						  program.name AS program_name, program.slug AS program_slug');
         $this->db->from($this->table);
         $this->db->join('program', $this->table.'.id_program = program.id_program', 'left');
         $this->db->where($where);
@@ -58,9 +58,8 @@ class Program_sub_model extends CI_Model {
             $where += array('id_program' => $param['id_program']);
         }
 
-        $this->db->select('id_program_sub, id_program, name, slug, program_objective, training_purpose,
-						  requirements_of_participant, training_material, others, created_date,
-						  updated_date');
+        $this->db->select('id_program_sub, id_program, name, slug, introduction, training_purpose,
+						  target_participant, course_content, others, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);
