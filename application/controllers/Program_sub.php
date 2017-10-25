@@ -18,10 +18,10 @@ class Program_sub extends REST_Controller {
 		
 		$id_program = filter($this->post('id_program'));
 		$name = filter(trim($this->post('name')));
-		$program_objective = $this->post('program_objective');
+		$introduction = $this->post('introduction');
 		$training_purpose = $this->post('training_purpose');
-		$requirements_of_participant = $this->post('requirements_of_participant');
-		$training_material = $this->post('training_material');
+		$target_participant = $this->post('target_participant');
+		$course_content = $this->post('course_content');
 		$others = filter(trim($this->post('others')));
 		
 		$data = array();
@@ -39,9 +39,9 @@ class Program_sub extends REST_Controller {
 			$code = 400;
 		}
 		
-		if ($program_objective == FALSE)
+		if ($introduction == FALSE)
 		{
-			$data['program_objective'] = 'required';
+			$data['introduction'] = 'required';
 			$validation = 'error';
 			$code = 400;
 		}
@@ -53,16 +53,16 @@ class Program_sub extends REST_Controller {
 			$code = 400;
 		}
 		
-		if ($requirements_of_participant == FALSE)
+		if ($target_participant == FALSE)
 		{
-			$data['requirements_of_participant'] = 'required';
+			$data['target_participant'] = 'required';
 			$validation = 'error';
 			$code = 400;
 		}
 		
-		if ($training_material == FALSE)
+		if ($course_content == FALSE)
 		{
-			$data['training_material'] = 'required';
+			$data['course_content'] = 'required';
 			$validation = 'error';
 			$code = 400;
 		}
@@ -85,10 +85,10 @@ class Program_sub extends REST_Controller {
 			$param['id_program'] = $id_program;
 			$param['name'] = $name;
 			$param['slug'] = $slug;
-			$param['program_objective'] = $program_objective;
+			$param['introduction'] = $introduction;
 			$param['training_purpose'] = $training_purpose;
-			$param['requirements_of_participant'] = $requirements_of_participant;
-			$param['training_material'] = $training_material;
+			$param['target_participant'] = $target_participant;
+			$param['course_content'] = $course_content;
 			$param['others'] = $others;
 			$param['created_date'] = date('Y-m-d H:i:s');
 			$param['updated_date'] = date('Y-m-d H:i:s');
@@ -350,10 +350,10 @@ class Program_sub extends REST_Controller {
 		$id_program_sub = filter($this->post('id_program_sub'));
 		$id_program = filter($this->post('id_program'));
 		$name = filter(trim($this->post('name')));
-		$program_objective = $this->post('program_objective');
+		$introduction = $this->post('introduction');
 		$training_purpose = $this->post('training_purpose');
-		$requirements_of_participant = $this->post('requirements_of_participant');
-		$training_material = $this->post('training_material');
+		$target_participant = $this->post('target_participant');
+		$course_content = $this->post('course_content');
 		$others = filter(trim($this->post('others')));
 		
 		$data = array();
@@ -381,9 +381,9 @@ class Program_sub extends REST_Controller {
 					$param['name'] = $name;
 				}
 				
-				if ($program_objective == TRUE)
+				if ($introduction == TRUE)
 				{
-					$param['program_objective'] = $program_objective;
+					$param['introduction'] = $introduction;
 				}
 				
 				if ($training_purpose == TRUE)
@@ -391,14 +391,14 @@ class Program_sub extends REST_Controller {
 					$param['training_purpose'] = $training_purpose;
 				}
 				
-				if ($requirements_of_participant == TRUE)
+				if ($target_participant == TRUE)
 				{
-					$param['requirements_of_participant'] = $requirements_of_participant;
+					$param['target_participant'] = $target_participant;
 				}
 				
-				if ($training_material == TRUE)
+				if ($course_content == TRUE)
 				{
-					$param['training_material'] = $training_material;
+					$param['course_content'] = $course_content;
 				}
 				
 				if ($others == TRUE)

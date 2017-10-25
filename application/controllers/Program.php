@@ -38,27 +38,6 @@ class Program extends REST_Controller {
 			$code = 400;
 		}
 		
-		if ($training_purpose == FALSE)
-		{
-			$data['training_purpose'] = 'required';
-			$validation = 'error';
-			$code = 400;
-		}
-		
-		if ($target_participant == FALSE)
-		{
-			$data['target_participant'] = 'required';
-			$validation = 'error';
-			$code = 400;
-		}
-		
-		if ($course_content == FALSE)
-		{
-			$data['course_content'] = 'required';
-			$validation = 'error';
-			$code = 400;
-		}
-		
 		if (check_program_name($name) == FALSE && $name == TRUE)
 		{
 			$data['name'] = 'already exist';
