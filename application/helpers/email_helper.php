@@ -6,98 +6,23 @@
  * First writter:  renda <renda [dot] innovation [at] gmail [dot] com>
  */
 
-if ( ! function_exists('email_member_approved'))
-{
-	function email_member_approved($param)
-	{
-		$CI =& get_instance();
-		$CI->load->model('preferences_model');;
-		$param += requirement();
-		
-		$param['subject'] = 'NEZindaCLUB - Selamat Bergabung di NIC';
-		$param['link_reset_password'] = $CI->config->item('link_reset_password').'?c='.$param['short_code'];
-		
-		// content email
-		$query = $CI->preferences_model->info(array('key' => 'email_member_approved'));
-		
-		$email_content = '';
-		if ($query->num_rows() > 0)
-		{
-			$email_content = $query->row()->value;
-		}
-		
-		$send = send_email($param, $email_content);
-		return $send;
-	}
-}
-
 if ( ! function_exists('email_member_create'))
 {
 	function email_member_create($param)
 	{
 		$CI =& get_instance();
-		$CI->load->model('preferences_model');;
+		$CI->load->model('preferences_model');
 		$param += requirement();
 		
-		$param['subject'] = 'NEZindaCLUB - Registrasi Berhasil';
+		$param['subject'] = 'Safetra - Registrasi Berhasil';
 		
 		// content email
-		$query = $CI->preferences_model->info(array('key' => 'email_register_success'));
+		$query = $CI->preferences_model->info(array('slug' => 'member-create-success'));
 		
 		$email_content = '';
 		if ($query->num_rows() > 0)
 		{
-			$email_content = $query->row()->value;
-		}
-		
-		$send = send_email($param, $email_content);
-		return $send;
-	}
-}
-
-if ( ! function_exists('email_recovery_password'))
-{
-	function email_recovery_password($param)
-	{
-		$CI =& get_instance();
-		$CI->load->model('preferences_model');;
-		$param += requirement();
-		
-		$param['subject'] = 'NEZindaCLUB - Recovery Password';
-		$param['link_reset_password'] = $CI->config->item('link_reset_password').'?c='.$param['short_code'];
-		
-		// content email
-		$query = $CI->preferences_model->info(array('key' => 'email_recovery_password'));
-		
-		$email_content = '';
-		if ($query->num_rows() > 0)
-		{
-			$email_content = $query->row()->value;
-		}
-		
-		$send = send_email($param, $email_content);
-		return $send;
-	}
-}
-
-if ( ! function_exists('email_reset_password'))
-{
-	function email_reset_password($param)
-	{
-		$CI =& get_instance();
-		$CI->load->model('preferences_model');;
-		$param += requirement();
-		
-		$param['subject'] = 'NEZindaCLUB - Reset Password';
-		$param['link_reset_password'] = $CI->config->item('link_reset_password').'?c='.$param['short_code'];
-		
-		// content email
-		$query = $CI->preferences_model->info(array('key' => 'email_reset_password'));
-		
-		$email_content = '';
-		if ($query->num_rows() > 0)
-		{
-			$email_content = $query->row()->value;
+			$email_content = $query->row()->content;
 		}
 		
 		$send = send_email($param, $email_content);
@@ -111,9 +36,8 @@ if( ! function_exists('requirement'))
 	{
 		$CI =& get_instance();
 		$CI->load->library('email');
-		$CI->config->load('email_template');
 		
-		$config['useragent'] = 'nezindaclub.com';
+		$config['useragent'] = 'safetra.co.id';
 		$config['wordwrap'] = FALSE;
 		$config['mailtype'] = 'html';
 		$CI->email->initialize($config);
@@ -136,7 +60,7 @@ if ( ! function_exists('send_email'))
 			$email_content = str_replace($k, $value, $email_content);
 		}
 		
-		$CI->email->from('admin@nezindaclub.com', 'NEZindaCLUB');
+		$CI->email->from('marketing@safetra.co.id', 'Safetra Indonesia');
 		$CI->email->to($param['email']);
 		$CI->email->subject($param['subject']);
 		$CI->email->message($email_content);

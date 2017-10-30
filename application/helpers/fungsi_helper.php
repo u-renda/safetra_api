@@ -100,14 +100,14 @@ if ( ! function_exists('check_client_name'))
     }
 }
 
-if ( ! function_exists('check_company_name'))
+if ( ! function_exists('check_company_slug'))
 {
-    function check_company_name($param)
+    function check_company_slug($param)
 	{
         $CI =& get_instance();
         $CI->load->model('company_model', 'the_model');
         
-		$query = $CI->the_model->info(array('name' => $param));
+		$query = $CI->the_model->info(array('slug' => $param));
 		
 		if ($query->num_rows() > 0)
 		{

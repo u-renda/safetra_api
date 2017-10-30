@@ -530,6 +530,7 @@ $config['default_company_order'] = array('created_date', 'name', 'pic_name');
 $config['default_media_album_order'] = array('created_date', 'name');
 $config['default_media_order'] = array('created_date');
 $config['default_member_certification_order'] = array('created_date', 'date');
+$config['default_member_course_order'] = array('created_date');
 $config['default_member_order'] = array('created_date', 'name', 'status');
 $config['default_member_status'] = array('1', '2', '3');
 $config['default_preferences_order'] = array('created_date', 'name');

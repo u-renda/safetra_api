@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Member_model extends CI_Model {
+class Member_course_model extends CI_Model {
 
-    var $table = 'member';
-	var $table_id = 'id_member';
+    var $table = 'member_course';
+	var $table_id = 'id_member_course';
     
     public function __construct()
     {
@@ -14,8 +14,7 @@ class Member_model extends CI_Model {
     {
         $this->db->set($this->table_id, 'UUID_SHORT()', FALSE);
 		$query = $this->db->insert($this->table, $param);
-		$id = $this->db->insert_id();
-		return $id;
+		return $query;
     }
     
     function delete($id)
@@ -28,14 +27,15 @@ class Member_model extends CI_Model {
     function info($param)
     {
         $where = array();
-        if (isset($param['id_member']) == TRUE)
+        if (isset($param['id_member_course']) == TRUE)
         {
-            $where += array('id_member' => $param['id_member']);
+            $where += array('id_member_course' => $param['id_member_course']);
         }
         
-        $this->db->select('id_member, '.$this->table.'.id_company, '.$this->table.'.name, email,
+        $this->db->select('id_member_course, '.$this->table.'.id_company, '.$this->table.'.name, email,
 						  '.$this->table.'.phone_number, status, '.$this->table.'.created_date,
-						  '.$this->table.'.updated_date, company.name AS company_name, slug, logo');
+						  '.$this->table.'.updated_date, company.name AS company_name, pic_name,
+						  company.phone_number AS company_phone_number, logo');
         $this->db->from($this->table);
 		$this->db->join('company', $this->table.'.id_company = company.id_company', 'left');
         $this->db->where($where);
@@ -46,17 +46,9 @@ class Member_model extends CI_Model {
     function lists($param)
     {
         $where = array();
-        if (isset($param['id_company']) == TRUE)
-        {
-            $where += array('id_company' => $param['id_company']);
-        }
-        if (isset($param['status']) == TRUE)
-        {
-            $where += array('status' => $param['status']);
-        }
         
-        $this->db->select('id_member, id_company, name, email, phone_number, status, created_date,
-						  updated_date');
+        $this->db->select('id_member_course, id_member, course_type, course_name, id_promo_code,
+						  created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);

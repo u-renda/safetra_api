@@ -14,7 +14,8 @@ class Company_model extends CI_Model {
     {
         $this->db->set($this->table_id, 'UUID_SHORT()', FALSE);
 		$query = $this->db->insert($this->table, $param);
-		return $query;
+		$id = $this->db->insert_id();
+		return $id;
     }
     
     function delete($id)
@@ -35,8 +36,12 @@ class Company_model extends CI_Model {
         {
             $where += array('name' => $param['name']);
         }
+        if (isset($param['slug']) == TRUE)
+        {
+            $where += array('slug' => $param['slug']);
+        }
         
-        $this->db->select('id_company, name, pic_name, phone_number, logo, created_date, updated_date');
+        $this->db->select('id_company, name, slug, logo, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $query = $this->db->get();
@@ -47,7 +52,7 @@ class Company_model extends CI_Model {
     {
         $where = array();
         
-        $this->db->select('id_company, name, pic_name, phone_number, logo, created_date, updated_date');
+        $this->db->select('id_company, name, logo, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);
