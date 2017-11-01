@@ -21,6 +21,7 @@ class Member extends REST_Controller {
 		$email = filter(trim(strtolower($this->post('email'))));
 		$phone_number = filter(trim($this->post('phone_number')));
 		$status = filter(trim(intval($this->post('status'))));
+		$password = filter($this->post('password'));
 		
 		$data = array();
 		if ($id_company == FALSE)
@@ -71,6 +72,7 @@ class Member extends REST_Controller {
 			$param['id_company'] = $id_company;
 			$param['name'] = $name;
 			$param['email'] = $email;
+			$param['password'] = md5($password);
 			$param['phone_number'] = str_replace(' ', '', $phone_number);
 			$param['status'] = $status;
 			$param['created_date'] = date('Y-m-d H:i:s');
@@ -195,8 +197,6 @@ class Member extends REST_Controller {
 					'company' => array(
 						'id_company' => $row->id_company,
 						'name' => $row->company_name,
-						'pic_name' => $row->pic_name,
-						'phone_number' => $row->company_phone_number,
 						'logo' => $row->logo
 					)
 				);
