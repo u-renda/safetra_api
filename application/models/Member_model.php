@@ -32,6 +32,10 @@ class Member_model extends CI_Model {
         {
             $where += array('id_member' => $param['id_member']);
         }
+        if (isset($param['email']) == TRUE)
+        {
+            $where += array('email' => $param['email']);
+        }
         
         $this->db->select('id_member, '.$this->table.'.id_company, '.$this->table.'.name, email,
 						  '.$this->table.'.phone_number, status, '.$this->table.'.created_date,

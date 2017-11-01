@@ -163,9 +163,10 @@ class Member extends REST_Controller {
 		$validation = 'ok';
 		
 		$id_member = filter($this->get('id_member'));
+		$email = filter($this->get('email'));
 		
 		$data = array();
-		if ($id_member == FALSE)
+		if ($id_member == FALSE && $email == FALSE)
 		{
 			$data['id_member'] = 'required';
 			$validation = 'error';
@@ -178,6 +179,10 @@ class Member extends REST_Controller {
 			if ($id_member != '')
 			{
 				$param['id_member'] = $id_member;
+			}
+			else
+			{
+				$param['email'] = $email;
 			}
 			
 			$query = $this->the_model->info($param);
