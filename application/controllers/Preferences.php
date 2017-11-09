@@ -145,9 +145,10 @@ class Preferences extends REST_Controller {
 		
 		$id_preferences = filter($this->get('id_preferences'));
 		$name = filter(trim($this->get('name')));
+		$slug = filter(trim($this->get('slug')));
 		
 		$data = array();
-		if ($id_preferences == FALSE && $name == FALSE)
+		if ($id_preferences == FALSE && $name == FALSE && $slug == FALSE)
 		{
 			$data['id_preferences'] = 'required';
 			$validation = 'error';
@@ -161,9 +162,13 @@ class Preferences extends REST_Controller {
 			{
 				$param['id_preferences'] = $id_preferences;
 			}
-			else
+			elseif ($name != '')
 			{
 				$param['name'] = $name;
+			}
+			else
+			{
+				$param['slug'] = $slug;
 			}
 			
 			$query = $this->the_model->info($param);
